@@ -22,17 +22,16 @@ class Auth extends CI_Controller
     public function proses()
     {
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password')); 
+        $password = md5($this->input->post('password'));
 
         $cekEmail = $this->db->where('username', $username)->from('tbl_user')->get()->row();
 
-        if ($cekEmail) { 
-            if ($cekEmail->password === $password) { 
+        if ($cekEmail) {
+            if ($cekEmail->password === $password) {
                 $getDataUser = $this->db->where('nis', $cekEmail->nis)->get('tbl_biodata')->row();
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
-                if ($cekEmail->id_role === '3') { 
-                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
-
+                if ($cekEmail->id_role === '3') {
                     if (stripos($userAgent, 'Mobile') !== false || stripos($userAgent, 'Android') !== false || stripos($userAgent, 'iOS') !== false) {
                         $data_session = array(
                             'username' => $cekEmail->username,
@@ -48,11 +47,23 @@ class Auth extends CI_Controller
                         redirect('auth/login');
                     }
                 } else {
-                    $this->session->set_flashdata('sucess', '<strong>SUCESS!!!</strong> Berhasil Login.');
-                    redirect('dashboard');
+                    if (!stripos($userAgent, 'Mobile') && !stripos($userAgent, 'Android') && !stripos($userAgent, 'iOS')) {
+                        $data_session = array(
+                            'username' => $cekEmail->username,
+                            'nama' => $getDataUser->nama,
+                            'nis' => $cekEmail->nis,
+                            'id_role' => $cekEmail->id_role
+                        );
+
+                        $this->session->set_userdata($data_session);
+                        redirect('dashboard');
+                    } else {
+                        $this->session->set_flashdata('error', '<strong>ERROR!!!</strong> Gunakan Laptop Untuk Login.');
+                        redirect('auth/login');
+                    }
                 }
             } else {
-                $this->session->set_flashdata('error', '<strong>ERROR!!!</strong> Password Yang Anda Masukan Tidak Sesuai.');
+                $this->session->set_flashdata('error', '<strong>ERROR!!!</strong> Password Yang Anda Masukkan Tidak Sesuai.');
                 redirect('auth/login');
             }
         } else {
@@ -60,6 +71,10 @@ class Auth extends CI_Controller
             redirect('auth/login');
         }
     }
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<?php
+git remote add origin git@github.com:Laminhdatau/minat_bakat.git<?php
 /**
  * CodeIgniter
  *
