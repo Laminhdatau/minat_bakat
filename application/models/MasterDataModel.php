@@ -9,7 +9,7 @@ class MasterDataModel extends CI_Model
 
 	public function newRole($data)
 	{
-		$this->db->insert('tbl_mst_role',$data);
+		$this->db->insert('tbl_mst_role', $data);
 
 		return true;
 	}
@@ -24,12 +24,17 @@ class MasterDataModel extends CI_Model
 
 	public function getJurusan()
 	{
-		return $this->db->where_not_in('id_jurusan',[1,2])->get('tbl_mst_jurusan')->result();
+		return $this->db->where_not_in('id_jurusan', [1, 2])->get('tbl_mst_jurusan')->result();
+	}
+
+	public function getJur()
+	{
+		return $this->db->where_not_in('id_jurusan', [1])->get('tbl_mst_jurusan')->result();
 	}
 
 	public function newJurusan($data)
 	{
-		$this->db->insert('tbl_mst_jurusan',$data);
+		$this->db->insert('tbl_mst_jurusan', $data);
 
 		return true;
 	}
@@ -45,15 +50,32 @@ class MasterDataModel extends CI_Model
 	public function getPelajaran()
 	{
 		return $this->db->select('a.id_pelajaran,a.pelajaran,b.jurusan')
-				->from('tbl_mst_pelajaran a')
-				->join('tbl_mst_jurusan b','a.id_jurusan = b.id_jurusan','left')
-				->get()
-				->result();
+			->from('tbl_mst_pelajaran a')
+			->join('tbl_mst_jurusan b', 'a.id_jurusan = b.id_jurusan', 'left')
+			->get()
+			->result();
+	}
+
+	public function getMapel()
+	{
+		return $this->db->select('a.id_pelajaran,a.pelajaran')
+			->from('tbl_mst_pelajaran a')
+			->get()
+			->result();
+	}
+
+	public function getMapelByJurusan($id)
+	{
+		return $this->db->select('*')
+			->from('tbl_mst_pelajaran')
+			->where('id_jurusan', $id)
+			->get()
+			->result();
 	}
 
 	public function newPelajaran($data)
 	{
-		$this->db->insert('tbl_mst_pelajaran',$data);
+		$this->db->insert('tbl_mst_pelajaran', $data);
 
 		return true;
 	}

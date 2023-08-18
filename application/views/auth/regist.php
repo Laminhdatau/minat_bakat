@@ -30,42 +30,39 @@
 				<a href="#" class="h3"><b>BMBK - </b>Bakat Minat BK</a>
 			</div>
 			<div class="card-body">
-				<p class="login-box-msg">Masuk Untuk Memulai Sesi Anda</p>
+				<p class="login-box-msg">Wajib Diisi Semua Yaaa</p>
 
-				<form action="<?= base_url('auth/proses') ?>" method="post">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
-							</div>
+				<form action="<?= base_url('auth/prosesdaftar') ?>" method="post">
+
+					<div class="userlogin">
+						<p class="login-box-msg">Silahkan Mendaftar</p>
+
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="nis" name="nis" placeholder="NIS" required>
+						</div>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
+						</div>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+						</div>
+						<div class="input-group mb-3">
+							<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 						</div>
 					</div>
-					<div class="input-group mb-3">
-						<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
+
 					<div class="row">
 						<div class="col-4">
-							<?php if (!empty($regist)) { ?>
-								<?= $regist; ?>
-							<?php } ?>
+							<a href="<?= base_url(); ?>" type="reset" class="btn btn-dark btn-block">LOGIN</a>
 						</div>
-						<div class="col-4">
-						</div>
+						<div class="col-4"></div>
 
 						<div class="col-4">
-							<button type="submit" class="btn btn-primary btn-block">MASUK</button>
+							<button type="submit" id="save" class="btn btn-primary btn-block">DAFTAR</button>
 						</div>
-
-
-						<!-- /.col -->
 					</div>
 				</form>
+
 			</div>
 			<!-- /.card-body -->
 		</div>
@@ -111,6 +108,8 @@
 			});
 		</script>
 	<?php } ?>
+
+
 </body>
 
 </html>

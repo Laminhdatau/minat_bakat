@@ -10,7 +10,7 @@ class Jenis_user extends CI_Controller
 
 	public function index()
 	{
-		$data['title']	=	"Jenis User";
+		$data['title']	=	"Jabatan";
 		$data['role']	=	$this->MasterDataModel->getRole();
 		$this->load->view('templates/header',$data);
 		$this->load->view('templates/navbar',$data);

@@ -7,20 +7,27 @@
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-						<!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
 						<li class="nav-item">
 							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-								<div class="image">
-									<img src="<?= base_url('public/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
-								</div>
-								<div class="info">
-									<font color="white">
-									<p>
-										<?= $this->session->userdata('nama') ?> &ensp;&ensp;
-									</p>
-									</font>
-								</div>
+								<a href="<?= base_url('dashboard/profile/' . $this->session->userdata('nis')); ?>">
+									<div class="image">
+										<?php if (!empty($this->session->userdata('user_image'))) { ?>
+											<img src="<?= base_url('public/dist/img/' . $this->session->userdata('user_image')) ?>" class="img-circle elevation-2" alt="User Image">
+										<?php } else { ?>
+											<img src="<?= base_url('public/dist/img/default.jpg') ?>" class="img-circle elevation-2" alt="User Image">
+
+										<?php } ?>
+									</div>
+								</a>
+								<a href="<?= base_url('dashboard/profile/' . $this->session->userdata('nis')); ?>">
+									<div class="info">
+										<font color="white">
+											<p>
+												<?= $this->session->userdata('nama') ?> &ensp;&ensp;
+											</p>
+										</font>
+									</div>
+								</a>
 							</div>
 						</li>
 						<li class="nav-item">
@@ -33,28 +40,45 @@
 								</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('data_awal') ?>" class="nav-link <?php if ($title == "Data Awal") {
-																						echo "active";
-																					} ?>">
-								<i class="nav-icon fas fa-calendar-alt"></i>
-								<p>
-									Data Awal
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('data_akhir') ?>" class="nav-link <?php if ($title == "Data Akhir") {
-																						echo "active";
-																					} ?>">
-								<i class="nav-icon fas fa-calendar-check"></i>
-								<p>
-									Data Akhir
-								</p>
-							</a>
-						</li>
+						<?php if ($this->session->userdata('id_role') == 3) { ?>
 
+							<li class="nav-item">
+								<a href="<?= base_url('minat') ?>" class="nav-link <?php if ($title == "3") {
+																							echo "active";
+																						} ?>">
+									<i class="nav-icon fas fa-edit"></i>
+									<p>
+										Minat Bakat
+									</p>
+								</a>
+							</li>
+						<?php } ?>
+						<?php if ($this->session->userdata('id_role') == 2) { ?>
+
+							<li class="nav-item">
+								<a href="<?= base_url('data_awal') ?>" class="nav-link <?php if ($title == "Data Awal") {
+																							echo "active";
+																						} ?>">
+									<i class="nav-icon fas fa-calendar-alt"></i>
+									<p>
+										Data Awal
+									</p>
+								</a>
+							</li>
+						<?php } ?>
 						<?php if ($this->session->userdata('id_role') == 1) { ?>
+							<li class="nav-item">
+								<a href="<?= base_url('data_akhir') ?>" class="nav-link <?php if ($title == "Data Akhir") {
+																							echo "active";
+																						} ?>">
+									<i class="nav-icon fas fa-calendar-check"></i>
+									<p>
+										Data Akhir
+									</p>
+								</a>
+							</li>
+
+
 							<li class="nav-item">
 								<a href="<?= base_url('user_management') ?>" class="nav-link <?php if ($title == "User Management") {
 																									echo "active";

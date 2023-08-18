@@ -28,15 +28,15 @@
 						<div class="card-header">
 							<div class="row">
 								<div class="col-lg-10">
-									<h4 class="card-title">New Jenis User</h4>
+									<h4 class="card-title">New Jabatan</h4>
 								</div>
 							</div>
 						</div>
 						<form action="<?= site_url('master_data/jenis_user/new') ?>" method="POST">
 							<div class="card-body">
 								<div class="form-group">
-									<label for="jenis_user">Jenis User</label>
-									<input type="text" class="form-control" id="jenis_user" name="jenis_user" placeholder="Jenis User" required>
+									<label for="jenis_user">Jabatan</label>
+									<input type="text" class="form-control" id="jenis_user" name="jenis_user" placeholder="Jabatan" required>
 								</div>
 							</div>
 							<div class="card-footer justify-content-right">
@@ -52,7 +52,7 @@
 						<div class="card-header">
 							<div class="row">
 								<div class="col-lg-10">
-									<h4 class="card-title">Jurusan</h4>
+									<h4 class="card-title">Jabatan</h4>
 								</div>
 							</div>
 						</div>
@@ -61,7 +61,7 @@
 								<thead>
 									<tr>
 										<th style="width: 5%;">NO</th>
-										<th style="width: 90%;">Jurusan</th>
+										<th style="width: 90%;">Jabatan</th>
 										<th style="width: 5%;">Aksi</th>
 									</tr>
 								</thead>
