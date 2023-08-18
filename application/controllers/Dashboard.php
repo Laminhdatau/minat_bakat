@@ -28,14 +28,13 @@ class Dashboard extends CI_Controller
 	public function ubahprofile($id)
 	{
 		$ortu = $this->input->post('ortu');
-		$ortuarray = (!empty($ortu)) ? implode(',', $ortu) : null;
-	
+		$ortuarray = (!empty($ortu)) ? implode('/', $ortu) : null;
 		$config['upload_path'] = './public/dist/img';
 		$config['allowed_types'] = 'jpg|jpeg|png';
 		$config['max_size'] = 5048;
-	
+
 		$this->load->library('upload', $config);
-	
+
 		if ($this->upload->do_upload('userfile')) {
 			$upload = $this->upload->data();
 			$data = [
@@ -49,22 +48,21 @@ class Dashboard extends CI_Controller
 				'password' => $this->input->post('password'),
 			];
 		}
-	
+
 		$bio = [
 			'nama' => $this->input->post('nama'),
 			'email' => $this->input->post('email'),
 			'alamat' => $this->input->post('alamat'),
 			'ortu' => $ortuarray
 		];
-	
+
 		$this->db->where('nis', $id);
 		$this->db->update('tbl_user', $data);
-	
+
 		$this->db->where('nis', $id);
 		$this->db->update('tbl_biodata', $bio);
-	
+
 		$this->session->set_flashdata('success', 'Profil berhasil diubah.');
 		redirect('dashboard');
 	}
-	
 }

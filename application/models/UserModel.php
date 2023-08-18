@@ -4,33 +4,49 @@ class UserModel extends CI_Model
 {
 	public function getNilaiSemua($id)
 	{
-		return $this->db->query('select u.id_user,b.*,n.nilai,j.jurusan,p.pelajaran from tbl_user u 
-		, tbl_biodata b 
-		, tbl_pilihan_mapel m 
-		, tbl_mst_pelajaran p
-		, tbl_nilai n 
-		, tbl_mst_jurusan j
-		where b.nis=u.nis
-		and m.nis=u.nis
-		and m.nis=b.nis
-		and n.nis=u.nis
-		and n.nis=b.nis
-		and n.nis=m.nis
-		and j.id_jurusan=b.id_jurusan
-		and p.id_pelajaran=m.id_pelajaran
-		and p.id_pelajaran=n.id_pelajaran
-		and j.id_jurusan=b.id_jurusan
-		and u.nis="' . $id . '"
-		and b.status="1"');
+		// return $this->db->query('
+		// sselect u.id_user,b.*,n.nilai,j.jurusan,p.pelajaran from tbl_user u 
+		// , tbl_biodata b 
+		// , tbl_pilihan_mapel m 
+		// , tbl_mst_pelajaran p
+		// , tbl_nilai n 
+		// , tbl_mst_jurusan j
+		// where b.nis=u.nis
+		// and m.nis=u.nis
+		// and m.nis=b.nis
+		// and n.nis=u.nis
+		// and n.nis=b.nis
+		// and n.nis=m.nis
+		// and p.id_pelajaran=m.id_pelajaran
+		// and p.id_pelajaran=n.id_pelajaran
+		// and u.nis="' . $id . '"
+		// -- and b.status="1"
+		return $this->db->query('
+
+		select
+    u.id_user,
+    b.*,
+    n.nilai,
+    j.jurusan,
+    p.pelajaran
+FROM
+    tbl_user u
+    left join tbl_biodata b on u.nis=b.nis
+    left join tbl_pilihan_mapel m on m.nis=b.nis
+     left join tbl_mst_pelajaran p on p.id_pelajaran=m.id_pelajaran
+   left join tbl_nilai n on n.id_pelajaran=m.id_pelajaran
+    left join tbl_mst_jurusan j on j.id_jurusan=p.id_jurusan
+ WHERE
+     u.nis ="' . $id . '";
+      -- and b.status="1";
+		
+		');
 	}
 
 	public function getSiswa($nis)
 	{
-		return $this->db->query('SELECT b.*,j.jurusan from tbl_biodata b 
-		left join tbl_mst_jurusan j on j.id_jurusan=b.id_jurusan
-		where j.id_jurusan not in(1)
-		and status in(0,1)
-		and b.nis="' . $nis . '"
+		return $this->db->query('SELECT * from tbl_biodata b 
+		where b.nis="' . $nis . '"
 		');
 	}
 

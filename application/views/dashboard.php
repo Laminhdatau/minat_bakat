@@ -28,7 +28,7 @@
 					<div class="row">
 						<div class="col-lg-1 col-8"></div>
 						<div class="col-lg-10 col-8">
-							<h1>Selamat Datang Di Aplikasi Bakat Dan Minat Bimbingan Konseling</h1>
+							<h3>Selamat Datang <b><?= $this->session->userdata('nama'); ?></b>, Di Aplikasi Bakat Dan Minat Bimbingan Konseling</h3>
 						</div>
 						<div class="col-lg-1 col-8"></div>
 					</div>

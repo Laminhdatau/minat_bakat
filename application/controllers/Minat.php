@@ -14,6 +14,7 @@ class Minat extends CI_Controller
 		$data['title']	=	"Minat";
 		$data['v']	=	$this->UserModel->getSiswa($this->nis)->row();
 		$data['a']	=	$this->UserModel->getNilaiSemua($this->nis)->row();
+
 		$data['jurusan']	=	$this->MasterDataModel->getJur();
 		$this->load->view('minatbakat', $data);
 	}
@@ -29,10 +30,15 @@ class Minat extends CI_Controller
 	public function simpan()
 	{
 
-		
+
 		$pima = [
 			'nis' => $this->input->post('nis'),
 			'id_pelajaran' => $this->input->post('id_pelajaran')
+		];
+
+		$bio = [
+			'nis' => $pima['nis'],
+			'id_jurusan' => $this->input->post('id_jurusan')
 		];
 
 		$nilai = [
@@ -40,20 +46,29 @@ class Minat extends CI_Controller
 			'id_pelajaran' => $pima['id_pelajaran'],
 			'nilai' => $this->input->post('nilai')
 		];
+
 		$this->db->query('update tbl_biodata set status="1" where nis="' . $pima['nis'] . '"');
 		$this->db->insert('tbl_pilihan_mapel', $pima);
 		$this->db->insert('tbl_nilai', $nilai);
+
+		$this->db->where('nis', $pima['nis']);
+		$this->db->update('tbl_biodata', $bio);
 		$this->session->set_flashdata('success', '<strong>SUCCESS!!!</strong> Berhasil Simpan.');
 		redirect('minat');
 	}
 
 	public function hapus($nis)
 	{
-		$this->db->where('m.nis', $nis);
-		$this->db->delete('tbl_pilihan_mapel m');
-		$this->db->where('n.nis', $nis);
-		$this->db->delete('tbl_nilai n');
-		$this->db->query('update tbl_biodata set status="0" where nis="' . $nis . '"');
+		$this->db->where('nis', $nis);
+		$this->db->delete('tbl_pilihan_mapel');
+
+		$this->db->where('nis', $nis);
+		$this->db->delete('tbl_nilai');
+
+		$data = array('status' => '0');
+		$this->db->where('nis', $nis);
+		$this->db->update('tbl_biodata', $data);
+
 		$this->session->set_flashdata('success', '<strong>SUCCESS!!!</strong> Berhasil Reset Pilihan.');
 		redirect('minat');
 	}

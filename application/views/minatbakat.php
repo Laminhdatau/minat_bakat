@@ -27,12 +27,10 @@
 		<form action="<?= base_url('minat/simpan/') ?>" method="post">
 			<div class="card card-outline card-primary">
 				<div class="card-body">
-					<?php if (!empty($v)) { ?>
-						<?php if ($v->status == '0') { ?>
-							<p class="login-box-msg">Pilih Minat</p>
-						<?php } elseif($v->status=='1') { ?>
-							<p class="login-box-msg">Anda Yakin Dengan Pilihan Anda?</p>
-						<?php } ?>
+
+					<?php if ($v->status == '0') { ?>
+						<p class="login-box-msg">Pilih Minat</p>
+
 						<div class="input-group mb-3">
 							<div class="row col-12">
 								<div class="col-4">
@@ -44,142 +42,156 @@
 								</div>
 								<div class="col-8">
 
-									<input type="number" class="form-control" id="nis" name="nis" placeholder="NIS" readonly value="<?= $v->nis; ?>">
+									<input type="number" class="form-control" id="nis" name="nis" placeholder="NIS" readonly value="<?= $this->session->userdata('nis'); ?>">
 
 								</div>
 							</div>
 						</div>
 
-						<?php if ($v->status == '0') { ?>
-							<div class="input-group mb-3">
-								<div class="row col-12">
-									<div class="col-4">
 
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>JURUSAN</b></span>
-											</div>
-										</div>
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
 
-									</div>
-
-									<div class="col-8">
-										<select name="id_jurusan" id="id_jurusan" class="form-control" required>
-											<option>--PILIH JURUSAN --</option>
-											<?php foreach ($jurusan as $p) { ?>
-												<option value="<?= $p->id_jurusan; ?>"><?= $p->jurusan; ?></option>
-											<?php } ?>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="input-group mb-3" id="pel">
-								<div class="row col-12">
-									<div class="col-4">
-
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>MAPEL</b></span>
-											</div>
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>JURUSAN</b></span>
 										</div>
 									</div>
 
-									<div class="col-8">
-										<select name="id_pelajaran" id="id_pelajaran" class="form-control" required>
-										</select>
-									</div>
+								</div>
+
+								<div class="col-8">
+									<select name="id_jurusan" id="id_jurusan" class="form-control" required>
+										<option>--PILIH JURUSAN --</option>
+										<?php foreach ($jurusan as $p) { ?>
+											<option value="<?= $p->id_jurusan; ?>"><?= $p->jurusan; ?></option>
+										<?php } ?>
+									</select>
 								</div>
 							</div>
+						</div>
 
+						<div class="input-group mb-3" id="pel">
+							<div class="row col-12">
+								<div class="col-4">
 
-							<div class="input-group mb-3">
-								<div class="row col-12">
-									<div class="col-4">
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>NILAI</b></span>
-											</div>
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>MAPEL</b></span>
 										</div>
 									</div>
-									<div class="col-8">
-										<input type="number" class="form-control" id="nilai" name="nilai" min="1" max="100" placeholder="Nilai" required>
-									</div>
+								</div>
+
+								<div class="col-8">
+									<select name="id_pelajaran" id="id_pelajaran" class="form-control" required>
+									</select>
 								</div>
 							</div>
+						</div>
 
-						<?php } elseif ($v->status == '1') { ?>
-							<div class="input-group mb-3">
-								<div class="row col-12">
-									<div class="col-4">
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>JURUSAN</b></span>
-											</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI</b></span>
 										</div>
 									</div>
-									<div class="col-8">
-										<input type="text" class="form-control" min="1" max="100" placeholder="<?= $a->jurusan; ?>" readonly>
-									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" class="form-control" id="nilai" name="nilai" min="1" max="100" placeholder="Nilai" required>
 								</div>
 							</div>
+						</div>
 
-							<div class="input-group mb-3">
-								<div class="row col-12">
-									<div class="col-4">
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>MAPEL</b></span>
-											</div>
+					<?php } elseif ($v->status == '1') { ?>
+
+						<p class="login-box-msg">Tekan Kirim Untuk Mengirim</p>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>JURUSAN</b></span>
 										</div>
 									</div>
-									<div class="col-8">
-										<input type="text" class="form-control" min="1" max="100" placeholder="<?= $a->pelajaran; ?>" readonly>
-									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $a->jurusan; ?>" readonly>
 								</div>
 							</div>
+						</div>
 
-
-							<div class="input-group mb-3">
-								<div class="row col-12">
-									<div class="col-4">
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span><b>NILAI</b></span>
-											</div>
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>MAPEL</b></span>
 										</div>
 									</div>
-									<div class="col-8">
-										<input type="text" class="form-control" min="1" max="100" placeholder="<?= $a->nilai; ?>" readonly>
-									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $a->pelajaran; ?>" readonly>
 								</div>
 							</div>
+						</div>
 
-						<?php } ?>
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $a->nilai; ?>" readonly>
+								</div>
+							</div>
+						</div>
 
-						<div class="row">
+					<?php } else { ?>
+						<p class="login-box-msg">Terima Kasih Sudah Berpartisipasi</p>
+					<?php } ?>
+
+					<div class="row">
+						<?php if ($v->status == '0' || $v->status == '1') { ?>
 							<div class="col-4">
 								<a href="<?= base_url('dashboard'); ?>" type="reset" class="btn btn-secondary btn-block">Kembali</a>
 							</div>
-							<div class="col-4">
-								<?php if ($v->status == '1') { ?>
-									<a href="<?= base_url('minat/hapus/' . $this->session->userdata('nis')); ?>" id="hapus" class="btn btn-danger btn-block">Hapus</a>
-								<?php } ?>
+						<?php } else { ?>
+							<div class="col-12">
+								<a href="<?= base_url('dashboard'); ?>" type="reset" class="btn btn-secondary btn-block">Kembali</a>
 							</div>
-							<?php if ($v->status == '0') { ?>
-								<div class="col-4">
-									<button type="submit" id="simpan" class="btn btn-primary btn-block">Simpan</button>
-								</div>
-							<?php } elseif ($v->status == '1') { ?>
-								<div class="col-4">
-									<a href="<?= base_url('minat/kirim/' . $this->session->userdata('nis')); ?>" id="kirim" class="btn btn-info btn-block">Kirim</a>
-								</div>
+						<?php } ?>
 
-							<?php } ?>
-						</div>
-					<?php } else { ?>
-						<p class="login-box-msg">Anda Telah Mengirim Pelajaran Yang Di Minati</p>
-					<?php } ?>
+						<?php if ($v->status == '1') { ?>
+							<div class="col-4">
+								<a href="<?= base_url('minat/hapus/' . $this->session->userdata('nis')); ?>" id="hapus" class="btn btn-danger btn-block">Hapus</a>
+							</div>
+						<?php } ?>
+
+						<?php if ($v->status == '0') { ?>
+							<div class="col-4">
+							</div>
+							<div class="col-4">
+								<button type="submit" id="simpan" class="btn btn-primary btn-block">Simpan</button>
+							</div>
+						<?php } ?>
+
+						<?php if ($v->status == '1') { ?>
+							<div class="col-4">
+								<a href="<?= base_url('minat/kirim/' . $this->session->userdata('nis')); ?>" id="kirim" class="btn btn-info btn-block">Kirim</a>
+							</div>
+						<?php } ?>
+
+					</div>
+
 		</form>
 	</div>
 	</div>
@@ -260,17 +272,7 @@
 			});
 		});
 	</script>
-	<script>
-		<?php if ($v->status === '0') { ?>
-			$('#kirim').hide();
-		<?php } else if ($v->status === '1') { ?>
-			$('#kirim').show();
-			$('#simpan').hide();
-		<?php } else { ?>
-			$('#kirim').hide();
-			$('#simpan').hide();
-		<?php } ?>
-	</script>
+
 </body>
 
 </html>

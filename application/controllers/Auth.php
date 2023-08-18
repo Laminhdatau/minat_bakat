@@ -43,7 +43,7 @@ class Auth extends CI_Controller
                 $getDataUser = $this->db->where('nis', $cekEmail->nis)->get('tbl_biodata')->row();
                 $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
-                if ($cekEmail->id_role === '1') {
+                if ($cekEmail->id_role === '3') {
                     if (stripos($userAgent, 'Mobile') !== false || stripos($userAgent, 'Android') !== false || stripos($userAgent, 'iOS') !== false) {
                         $data_session = array(
                             'username' => $cekEmail->username,

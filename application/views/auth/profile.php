@@ -29,7 +29,7 @@
 				<?php if ($data->user_image) { ?>
 					<div class="card-header text-center">
 						<label for="userfile">
-							<img class="img-circle" src="<?= base_url('public/dist/img/' . $data->user_image); ?>" alt="" width="50%">
+							<img class="img-circle" src="<?= base_url('public/dist/img/' . $data->user_image); ?>" alt="Foto Profil" width="50%">
 						</label>
 						<input type="file" name="userfile" id="userfile" style="display: none;" accept=".jpg, .jpeg, .png">
 					</div>
@@ -37,7 +37,6 @@
 					<div class="card-header text-center">
 						<input type="file" name="userfile" id="userfile" class="form-control" accept=".jpg, .jpeg, .png">
 					</div>
-
 				<?php } ?>
 
 				<div class="card-body">
@@ -62,7 +61,7 @@
 
 					<?php
 					if ($data->id_role !== '1' && $data->id_role !== '2') {
-						$ortu = explode(',', $data->ortu);
+						$ortu = explode('/', $data->ortu);
 						foreach ($ortu as $index => $o) {
 							$placeholder = ($index === 0) ? "Ayah" : "Ibu";
 					?>
@@ -112,20 +111,6 @@
 							</div>
 						</div>
 					</div>
-
-					<?php if ($data->id_role !== '1' && $data->id_role !== '2') { ?>
-						<div class="input-group mb-3">
-							<select name="id_jurusan" id="" class="form-control">
-								<option>--PILIH JURUSAN--</option>
-								<?php foreach ($jurusan as $j) : ?>
-									<option value="<?= $j->id_jurusan; ?>" <?= ($j->id_jurusan == $data->id_jurusan) ? 'selected' : ''; ?>><?= $j->jurusan; ?></option>
-								<?php endforeach; ?>
-							</select>
-						</div>
-					<?php } ?>
-
-
-
 
 					<div class="row">
 						<div class="col-4">
