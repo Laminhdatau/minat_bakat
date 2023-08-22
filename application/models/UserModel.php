@@ -4,23 +4,7 @@ class UserModel extends CI_Model
 {
 	public function getNilaiSemua($id)
 	{
-		// return $this->db->query('
-		// sselect u.id_user,b.*,n.nilai,j.jurusan,p.pelajaran from tbl_user u 
-		// , tbl_biodata b 
-		// , tbl_pilihan_mapel m 
-		// , tbl_mst_pelajaran p
-		// , tbl_nilai n 
-		// , tbl_mst_jurusan j
-		// where b.nis=u.nis
-		// and m.nis=u.nis
-		// and m.nis=b.nis
-		// and n.nis=u.nis
-		// and n.nis=b.nis
-		// and n.nis=m.nis
-		// and p.id_pelajaran=m.id_pelajaran
-		// and p.id_pelajaran=n.id_pelajaran
-		// and u.nis="' . $id . '"
-		// -- and b.status="1"
+		
 		return $this->db->query('
 
 		select
@@ -55,7 +39,7 @@ FROM
 		return $this->db->select('a.*,b.jurusan')
 			->from('tbl_biodata a')
 			->join('tbl_mst_jurusan b', 'a.id_jurusan = b.id_jurusan', 'left')
-			->where_not_in('a.id_jurusan', [1, 2])
+			->where_not_in('a.id_jurusan', [1])
 			->where('a.status', '2')
 			->get()
 			->result();

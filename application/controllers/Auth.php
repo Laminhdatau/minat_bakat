@@ -17,8 +17,8 @@ class Auth extends CI_Controller
     {
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         if (stripos($userAgent, 'Mobile') !== false || stripos($userAgent, 'Android') !== false || stripos($userAgent, 'iOS') !== false) {
-            $a['regist'] = '<a href="' . base_url('auth/register') . '" class="btn btn-dark btn-block">DAFTAR</a>';
-            $this->load->view('auth/login', $a);
+        $a['regist'] = '<a href="' . base_url('auth/register') . '" class="btn btn-dark btn-block">DAFTAR</a>';
+        $this->load->view('auth/login', $a);
         } else {
             $this->load->view('auth/login');
         }
@@ -91,7 +91,7 @@ class Auth extends CI_Controller
 
     public function prosesdaftar()
     {
-    
+
         $biodata = [
             'nis' => $this->input->post('nis'),
             'nama' => $this->input->post('nama')
