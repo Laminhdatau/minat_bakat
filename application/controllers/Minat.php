@@ -14,6 +14,26 @@ class Minat extends CI_Controller
 		$data['title']	=	"Minat";
 		$data['v']	=	$this->UserModel->getSiswa($this->nis)->row();
 		$data['a']	=	$this->UserModel->getNilaiSemua($this->nis)->row();
+		if (!empty($data['a'])) {
+			$data['idp'] = explode(', ', $data['a']->id_pelajaran);
+			$data['pl'] = explode(', ', $data['a']->pelajaran);
+			$data['idj'] = explode(', ', $data['a']->id_jurusan);
+			$data['j'] = explode(', ', $data['a']->jurusan);
+			$data['n'] = explode(',', $data['a']->nilai);
+			$combinedData = [];
+			for ($i = 0; $i < count($data['idj']); $i++) {
+				$combinedData[] = [
+					'id_pelajaran' => $data['idp'][$i],
+					'pelajaran' => $data['pl'][$i],
+					'id_jurusan' => $data['idj'][$i],
+					'jurusan' => $data['j'][$i],
+					'nilai' => $data['n'][$i]
+				];
+			}
+
+			$data['data1'] = $combinedData[0];
+			$data['data2'] = $combinedData[1];
+		}
 
 		$data['jurusan']	=	$this->MasterDataModel->getJur();
 		$this->load->view('minatbakat', $data);
@@ -29,33 +49,42 @@ class Minat extends CI_Controller
 
 	public function simpan()
 	{
+		$nis = $this->session->userdata('nis');
 
+		$id_jurusan1 = $this->input->post('id_jurusan')[1];
+		$id_pelajaran1 = $this->input->post('id_pelajaran')[1];
+		$nilai1 = $this->input->post('nilai')[1];
+
+		$id_jurusan2 = $this->input->post('id_jurusan')[2];
+		$id_pelajaran2 = $this->input->post('id_pelajaran')[2];
+		$nilai2 = $this->input->post('nilai')[2];
 
 		$pima = [
-			'nis' => $this->input->post('nis'),
-			'id_pelajaran' => $this->input->post('id_pelajaran')
+			'nis' => $nis,
+			'id_pelajaran' => $id_pelajaran1 . ',' . $id_pelajaran2
 		];
 
 		$bio = [
-			'nis' => $pima['nis'],
-			'id_jurusan' => $this->input->post('id_jurusan')
+			'nis' => $nis,
+			'id_jurusan' => $id_jurusan1 . ',' . $id_jurusan2
 		];
 
 		$nilai = [
-			'nis' => $pima['nis'],
-			'id_pelajaran' => $pima['id_pelajaran'],
-			'nilai' => $this->input->post('nilai')
+			'nis' => $nis,
+			'id_pelajaran' => $id_pelajaran1 . ',' . $id_pelajaran2,
+			'nilai' => $nilai1 . ',' . $nilai2
 		];
 
-		$this->db->query('update tbl_biodata set status="1" where nis="' . $pima['nis'] . '"');
+		$this->db->query('update tbl_biodata set status="1" where nis="' . $nis . '"');
 		$this->db->insert('tbl_pilihan_mapel', $pima);
 		$this->db->insert('tbl_nilai', $nilai);
 
-		$this->db->where('nis', $pima['nis']);
+		$this->db->where('nis', $nis);
 		$this->db->update('tbl_biodata', $bio);
 		$this->session->set_flashdata('success', '<strong>SUCCESS!!!</strong> Berhasil Simpan.');
 		redirect('minat');
 	}
+
 
 	public function hapus($nis)
 	{

@@ -49,46 +49,68 @@
 						</div>
 
 
-						<!-- Bagian JURUSAN 1 -->
 						<div class="input-group mb-3">
 							<div class="row col-12">
 
-								<div class="col-6">
-									<select name="id_jurusan[1]" id="id_jurusan[1]" class="form-control select-jurusan" required>
-										<option>--JURUSAN 1--</option>
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>JURUSAN 1</b></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-4">
+									<select name="id_jurusan[1]" id="id_jurusan" class="form-control" required>
+										<option>--PILIH JURUSAN KE 1 --</option>
 										<?php foreach ($jurusan as $p) { ?>
 											<option value="<?= $p->id_jurusan; ?>"><?= $p->jurusan; ?></option>
 										<?php } ?>
 									</select>
 								</div>
-								<div class="col-6">
-									<select name="id_pelajaran[1]" id="id_pelajaran[1]" class="form-control pelajaran-dropdown" required>
+
+								<div class="col-4">
+									<select name="id_pelajaran[1]" id="id_pelajaran[1]" class="form-control" required>
+										<option value="">--PILIH MAPEL 1--</option>
 
 									</select>
 								</div>
+
+
 							</div>
 						</div>
 
-						<!-- Bagian JURUSAN 2 -->
+
 						<div class="input-group mb-3">
 							<div class="row col-12">
 
-								<div class="col-6">
-									<select name="id_jurusan[2]" id="id_jurusan[2]" class="form-control select-jurusan" required>
-										<option>--JURUSAN 2 --</option>
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>JURUSAN 2</b></span>
+										</div>
+									</div>
+								</div>
 
+								<div class="col-4">
+									<select name="id_jurusan[2]" id="id_jurusan" class="form-control" required>
+										<option>--PILIH JURUSAN KE 2 --</option>
 										<?php foreach ($jurusan as $p) { ?>
 											<option value="<?= $p->id_jurusan; ?>"><?= $p->jurusan; ?></option>
 										<?php } ?>
 									</select>
 								</div>
-								<div class="col-6">
-									<select name="id_pelajaran[2]" id="id_pelajaran[2]" class="form-control pelajaran-dropdown" required>
 
+								<div class="col-4">
+									<select name="id_pelajaran[2]" id="id_pelajaran[2]" class="form-control" required>
+										<option value="">--PILIH MAPEL 2--</option>
 									</select>
 								</div>
+
 							</div>
 						</div>
+
+
 
 
 
@@ -102,7 +124,7 @@
 									</div>
 								</div>
 								<div class="col-8">
-									<input type="number" name="nilai[1]" id="nilai[1]" class="form-control" min="10" max="100" placeholder="Masukan Nilai 1" required>
+									<input type="number" class="form-control" id="nilai[1]" name="nilai[1]" min="1" max="100" placeholder="Nilai" required>
 								</div>
 							</div>
 						</div>
@@ -117,15 +139,12 @@
 									</div>
 								</div>
 								<div class="col-8">
-									<input type="number" name="nilai[2]" id="nilai[2]" class="form-control" min="10" max="100" placeholder="Masukan Nilai 2" required>
+									<input type="number" class="form-control" id="nilai[2]" name="nilai[2]" min="1" max="100" placeholder="Nilai" required>
 								</div>
 							</div>
 						</div>
 
-
 					<?php } elseif ($v->status == '1') { ?>
-
-
 
 						<p class="login-box-msg">Tekan Kirim Untuk Mengirim</p>
 
@@ -134,14 +153,12 @@
 								<div class="col-4">
 									<div class="input-group-append">
 										<div class="input-group-text">
-											<span><b>NIS</b></span>
+											<span><b>JURUSAN</b></span>
 										</div>
 									</div>
 								</div>
 								<div class="col-8">
-
-									<input type="number" class="form-control" id="nis" name="nis" placeholder="NIS" readonly value="<?= $this->session->userdata('nis'); ?>">
-
+									<input type="text" class="form-control" placeholder="<?= $a->jurusan; ?>" readonly>
 								</div>
 							</div>
 						</div>
@@ -151,12 +168,12 @@
 								<div class="col-4">
 									<div class="input-group-append">
 										<div class="input-group-text">
-											<span><b>MAPEL 1</b></span>
+											<span><b>MAPEL</b></span>
 										</div>
 									</div>
 								</div>
 								<div class="col-8">
-									<input type="text" class="form-control" placeholder="<?= $data1['pelajaran']; ?>" readonly>
+									<input type="text" class="form-control" placeholder="<?= $a->pelajaran; ?>" readonly>
 								</div>
 							</div>
 						</div>
@@ -166,42 +183,12 @@
 								<div class="col-4">
 									<div class="input-group-append">
 										<div class="input-group-text">
-											<span><b>MAPEL 2</b></span>
+											<span><b>NILAI</b></span>
 										</div>
 									</div>
 								</div>
 								<div class="col-8">
-									<input type="text" class="form-control" placeholder="<?= $data2['pelajaran']; ?>" readonly>
-								</div>
-							</div>
-						</div>
-
-						<div class="input-group mb-3">
-							<div class="row col-12">
-								<div class="col-4">
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span><b>NILAI 1</b></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<input type="text" class="form-control" placeholder="<?= $data1['nilai']; ?>" readonly>
-								</div>
-							</div>
-						</div>
-
-						<div class="input-group mb-3">
-							<div class="row col-12">
-								<div class="col-4">
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span><b>NILAI 2</b></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<input type="text" class="form-control" placeholder="<?= $data2['nilai']; ?>" readonly>
+									<input type="text" class="form-control" placeholder="<?= $a->nilai; ?>" readonly>
 								</div>
 							</div>
 						</div>
@@ -289,11 +276,74 @@
 
 
 
-	<script>
+	<!-- <script>
 		$(document).ready(function() {
-			function populatePelajaranOptions(jurusanDropdown, pelajaranDropdown) {
-				var id_jurusan = $(jurusanDropdown).val();
-				console.log(id_jurusan);
+			$('#id_jurusan').change(function() {
+				var id_jurusan = $(this).val();
+				$.ajax({
+					url: '<?= base_url('minat/getMapelByJurusan') ?>',
+					dataType: 'json',
+					// type: 'ajax',
+					method: 'post',
+					data: {
+						id_jurusan: id_jurusan
+					},
+					success: function(response) {
+						// Bersihkan opsi pelajaran sebelumnya
+						$('#id_pelajaran\\[1\\]').empty();
+						$('#id_pelajaran\\[2\\]').empty();
+
+						// Tampilkan div pelajaran
+						$('#pel').show();
+
+						// Tambahkan opsi default
+						$('#id_pelajaran\\[1\\]').append($('<option>', {
+							value: '',
+							text: '-- PILIH MAPEL 1 --'
+						}));
+
+						$('#id_pelajaran\\[2\\]').append($('<option>', {
+							value: '',
+							text: '-- PILIH MAPEL 2 --'
+						}));
+
+						// Looping dan tambahkan opsi berdasarkan data JSON
+						response.forEach(function(pelajaran) {
+							$('#id_pelajaran\\[1\\]').append($('<option>', {
+								value: pelajaran.id_pelajaran,
+								text: pelajaran.pelajaran
+							}));
+
+							$('#id_pelajaran\\[2\\]').append($('<option>', {
+								value: pelajaran.id_pelajaran,
+								text: pelajaran.pelajaran
+							}));
+						});
+					}
+				});
+
+			});
+		});
+	</script> -->
+
+
+	<!-- <script>
+		$(document).ready(function() {
+			// Ketika dropdown jurusan 1 diubah
+			$('#id_jurusan\\[1\\]').change(function() {
+				var id_jurusan = $(this).val();
+				var pelajaranDropdown = '#id_pelajaran\\[1\\]';
+				loadMapel(id_jurusan, pelajaranDropdown);
+			});
+
+			// Ketika dropdown jurusan 2 diubah
+			$('#id_jurusan\\[2\\]').change(function() {
+				var id_jurusan = $(this).val();
+				var pelajaranDropdown = '#id_pelajaran\\[2\\]';
+				loadMapel(id_jurusan, pelajaranDropdown);
+			});
+
+			function loadMapel(id_jurusan, pelajaranDropdown) {
 				$.ajax({
 					url: '<?= base_url('minat/getMapelByJurusan') ?>',
 					dataType: 'json',
@@ -302,12 +352,10 @@
 						id_jurusan: id_jurusan
 					},
 					success: function(response) {
-						console.log(response);
 						$(pelajaranDropdown).empty();
-
 						$(pelajaranDropdown).append($('<option>', {
 							value: '',
-							text: '--PELAJARAN--'
+							text: '-- PILIH MAPEL --'
 						}));
 
 						response.forEach(function(pelajaran) {
@@ -319,21 +367,45 @@
 					}
 				});
 			}
-
-
-			$('.select-jurusan').change(function() {
-				var pelajaranDropdown = $(this).closest('.input-group').find('.form-control.pelajaran-dropdown');
-				populatePelajaranOptions(this, pelajaranDropdown);
-			});
-
-			$('.select-jurusan').each(function() {
-				var pelajaranDropdown = $(this).closest('.input-group').find('.form-control.pelajaran-dropdown');
-				populatePelajaranOptions(this, pelajaranDropdown);
-			});
 		});
-	</script>
+	</script> -->
 
 
+
+	<script>
+$(document).ready(function() {
+    $('.select-jurusan').change(function() {
+        var id_jurusan = $(this).val();
+        var pelajaranDropdown = $(this).data('pelajaran-dropdown');
+        loadMapel(id_jurusan, pelajaranDropdown);
+    });
+
+    function loadMapel(id_jurusan, pelajaranDropdown) {
+        $.ajax({
+            url: '<?= base_url('minat/getMapelByJurusan') ?>',
+            dataType: 'json',
+            method: 'post',
+            data: {
+                id_jurusan: id_jurusan
+            },
+            success: function(response) {
+                $(pelajaranDropdown).empty();
+                $(pelajaranDropdown).append($('<option>', {
+                    value: '',
+                    text: '-- PILIH MAPEL --'
+                }));
+
+                response.forEach(function(pelajaran) {
+                    $(pelajaranDropdown).append($('<option>', {
+                        value: pelajaran.id_pelajaran,
+                        text: pelajaran.pelajaran
+                    }));
+                });
+            }
+        });
+    }
+});
+</script>
 
 
 

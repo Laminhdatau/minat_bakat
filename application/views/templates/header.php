@@ -15,7 +15,7 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?= base_url('public/plugins/fontawesome-free/css/all.min.css') ?>">
 	<!-- Ionicons -->
-	<link rel="stylesheet" href="<?= base_url('public/libra/'); ?>/ionicons.min.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('public/libra/'); ?>/ionicons.min.css">
 	<!-- Tempusdominus Bootstrap 4 -->
 	<link rel="stylesheet" href="<?= base_url('public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
 	<!-- iCheck -->

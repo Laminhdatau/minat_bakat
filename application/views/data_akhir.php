@@ -49,7 +49,16 @@
 									<td><?= $v->nama; ?></td>
 									<td><?= $v->alamat; ?></td>
 									<td><?= $v->email; ?></td>
-									<td><?= $v->jurusan; ?></td>
+									<td>
+										<?php
+										$jurusan = $v->jurusan;
+										$jurray = explode(',', $jurusan);
+
+										foreach ($jurray as $value) {
+											echo $value . "<br>";
+										}
+										?>
+									</td>
 									<td>
 										<button class="btn bg-info btn-xs btn-edit" style="width: 30px;" data-toggle="modal" data-target="#baru" data-id="<?= $v->nis ?>">
 											<i class="fas fa-eye"></i>
@@ -94,8 +103,12 @@
 					<input type="text" class="form-control" id="email" name="email" disabled>
 				</div>
 				<div class="form-group">
-					<label for="jurusan">Jurusan</label>
-					<input type="text" class="form-control" id="jurusan" name="jurusan" disabled>
+					<label for="jurusan1">Jurusan 1</label>
+					<input type="text" class="form-control" id="jurusan1" name="jurusan[1]" disabled>
+				</div>
+				<div class="form-group">
+					<label for="jurusan2">Jurusan 2</label>
+					<input type="text" class="form-control" id="jurusan2" name="jurusan[2]" disabled>
 				</div>
 				<table id="nilai_pelajaran" class="table table-bordered table-striped">
 					<thead>
@@ -148,25 +161,35 @@
 			type: "GET",
 			dataType: "JSON",
 			success: function(data) {
-				console.log(data);
+				var jurusanArray = data.data['jurusan'].split(',').map(function(item) {
+					return item.trim();
+				});
+
+
 				$('#nis').val(data.data['nis']);
 				$('#nama').val(data.data['nama']);
 				$('#alamat').val(data.data['alamat']);
 				$('#email').val(data.data['email']);
-				$('#jurusan').val(data.data['jurusan']);
+				$('#jurusan1').val(jurusanArray[0]);
+				$('#jurusan2').val(jurusanArray[1]);
 
 				$.ajax({
-                url: "<?= base_url('data_akhir/getDataTable/') ?>" + nis,
-                type: "GET",
-                dataType: "JSON",
-                success: function(data) {
-                    $.each(data, function(i, item) {
-						console.log(item);
-                        var row = '<tr><td>' + (i + 1) + '</td><td>' + item.pelajaran + '</td><td>' + item.nilai + '</td></tr>';
-                        $('#nilai_pelajaran tbody').append(row);
-                    });
-                }
-            });
+					url: "<?= base_url('data_akhir/getDataTable/') ?>" + nis,
+					type: "GET",
+					dataType: "JSON",
+					success: function(data) {
+						var pelajaranArray = data.pelajaran.split(',');
+						var nilaiArray = data.nilai.split(',');
+
+						var row = '';
+						for (var i = 0; i < pelajaranArray.length; i++) {
+							row += '<tr><td>' + (i + 1) + '</td><td>' + pelajaranArray[i] + '</td><td>' + nilaiArray[i] + '</td></tr>';
+						}
+
+						$('#nilai_pelajaran tbody').append(row);
+
+					}
+				});
 			}
 		});
 	});

@@ -26,7 +26,6 @@ class Data_akhir extends CI_Controller
 		$result = array(
 			'data' => $data
 		);
-
 		echo json_encode($result);
 	}
 

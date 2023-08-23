@@ -4,11 +4,12 @@ class DataAkhirModel extends CI_Model
 {
 	public function getPelajaranNilai($nis)
 	{
-		return $this->db->select('b.pelajaran,a.nilai')
-			->from('tbl_nilai a')
-			->join('tbl_mst_pelajaran b', 'a.id_pelajaran = b.id_pelajaran', 'left')
-			->where('a.nis', $nis)
-			->get()
-			->result();
+		return $this->db->query("SELECT
+		GROUP_CONCAT(b.pelajaran SEPARATOR ',') as pelajaran,
+		a.nilai
+	FROM tbl_nilai a
+	LEFT JOIN tbl_mst_pelajaran b ON FIND_IN_SET(b.id_pelajaran, a.id_pelajaran)
+	WHERE a.nis = '" . $nis . "'
+	GROUP BY a.nilai;")->row();
 	}
 }
