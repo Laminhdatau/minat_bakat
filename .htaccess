@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /minat_siswa/
+RewriteBase /minat_bakat/
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f

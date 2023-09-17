@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Base Site URL
 |--------------------------------------------------------------------------
 |
-| URL to your CodeIgniter root. Typically this will be your base URL,
+| URL to your CodeIgniter root. Typically this will be yourcbc base URL,
 | WITH a trailing slash:
 |
 |	http://example.com/
@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/minat_siswa';
+$config['base_url'] = 'http://localhost/minat_bakat';
 
 /*
 |--------------------------------------------------------------------------

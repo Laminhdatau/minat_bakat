@@ -102,7 +102,7 @@
 					<label for="email">Email</label>
 					<input type="text" class="form-control" id="email" name="email" disabled>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="jurusan1">Jurusan 1</label>
 					<input type="text" class="form-control" id="jurusan1" name="jurusan[1]" disabled>
 				</div>
@@ -110,12 +110,17 @@
 					<label for="jurusan2">Jurusan 2</label>
 					<input type="text" class="form-control" id="jurusan2" name="jurusan[2]" disabled>
 				</div>
+				<div class="form-group">
+					<label for="jurusan2">Jurusan 2</label>
+					<input type="text" class="form-control" id="jurusan3" name="jurusan[3]" disabled>
+				</div> -->
 				<table id="nilai_pelajaran" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th style="width: 10%;">NO</th>
-							<th style="width: 90%;">Pelajaran</th>
-							<th style="width: 90%;">Nilai</th>
+							<th style="width: 70%;">Pelajaran</th>
+							<th style="width: 10%;">Nilai</th>
+							<th style="width: 10%;">Rata-Rata</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -161,25 +166,22 @@
 			type: "GET",
 			dataType: "JSON",
 			success: function(data) {
-				var jurusanArray = data.data['jurusan'].split(',').map(function(item) {
-					return item.trim();
-				});
-
+				console.log(data);
 
 				$('#nis').val(data.data['nis']);
 				$('#nama').val(data.data['nama']);
 				$('#alamat').val(data.data['alamat']);
 				$('#email').val(data.data['email']);
-				$('#jurusan1').val(jurusanArray[0]);
-				$('#jurusan2').val(jurusanArray[1]);
 
 				$.ajax({
 					url: "<?= base_url('data_akhir/getDataTable/') ?>" + nis,
 					type: "GET",
 					dataType: "JSON",
 					success: function(data) {
+						console.log(data);
 						var pelajaranArray = data.pelajaran.split(',');
 						var nilaiArray = data.nilai.split(',');
+						// var rata_rata = data.rata_rata.split(',');
 
 						var row = '';
 						for (var i = 0; i < pelajaranArray.length; i++) {

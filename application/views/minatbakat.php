@@ -90,6 +90,27 @@
 							</div>
 						</div>
 
+						<!-- Bagian JURUSAN 2 -->
+						<div class="input-group mb-3">
+							<div class="row col-12">
+
+								<div class="col-6">
+									<select name="id_jurusan[3]" id="id_jurusan[3]" class="form-control select-jurusan" required>
+										<option>--JURUSAN 3 --</option>
+
+										<?php foreach ($jurusan as $p) { ?>
+											<option value="<?= $p->id_jurusan; ?>"><?= $p->jurusan; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-6">
+									<select name="id_pelajaran[3]" id="id_pelajaran[3]" class="form-control pelajaran-dropdown" required>
+
+									</select>
+								</div>
+							</div>
+						</div>
+
 
 
 						<div class="input-group mb-3">
@@ -118,6 +139,117 @@
 								</div>
 								<div class="col-8">
 									<input type="number" name="nilai[2]" id="nilai[2]" class="form-control" min="10" max="100" placeholder="Masukan Nilai 2" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilai[3]" id="nilai[3]" class="form-control" min="10" max="100" placeholder="Masukan Nilai 3" required>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 1</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaiaktif[1]" id="nilaiaktif[1]" class="form-control" min="10" max="100" placeholder="Masukan nilaiaktif KEAKTIFAN 1" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 2</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaiaktif[2]" id="nilaiaktif[2]" class="form-control" min="10" max="100" placeholder="Masukan NILAI KEAKTIFAN 2" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaiaktif[3]" id="nilaiaktif[3]" class="form-control" min="10" max="100" placeholder="Masukan NILAI KEAKTIFAN 3" required>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 1</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaitampil[1]" id="nilaitampil[1]" class="form-control" min="10" max="100" placeholder="Masukan NILAI KETERAMPILAN 1" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 2</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaitampil[2]" id="nilaitampil[2]" class="form-control" min="10" max="100" placeholder="Masukan NILAI KETERAMPILAN 2" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="number" name="nilaitampil[3]" id="nilaitampil[3]" class="form-control" min="10" max="100" placeholder="Masukan NILAI KETERAMPILAN 3" required>
 								</div>
 							</div>
 						</div>
@@ -181,6 +313,21 @@
 								<div class="col-4">
 									<div class="input-group-append">
 										<div class="input-group-text">
+											<span><b>MAPEL 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data3['pelajaran']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
 											<span><b>NILAI 1</b></span>
 										</div>
 									</div>
@@ -202,6 +349,114 @@
 								</div>
 								<div class="col-8">
 									<input type="text" class="form-control" placeholder="<?= $data2['nilai']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data3['nilai']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 1</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data1['nilaktif']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 2</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data2['nilaktif']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KEAKTIFAN 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data3['nilaktif']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 1</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data1['niltampil']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 2</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data2['niltampil']; ?>" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="row col-12">
+								<div class="col-4">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span><b>NILAI KETERAMPILAN 3</b></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-8">
+									<input type="text" class="form-control" placeholder="<?= $data3['niltampil']; ?>" readonly>
 								</div>
 							</div>
 						</div>

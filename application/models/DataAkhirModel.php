@@ -12,4 +12,10 @@ class DataAkhirModel extends CI_Model
 	WHERE a.nis = '" . $nis . "'
 	GROUP BY a.nilai;")->row();
 	}
+
+	public function getJurusan($nis)
+	{
+		return $this->db->query("
+		select * from v_jurusan_nama where nis='" . $nis . "'")->row();
+	}
 }

@@ -32,7 +32,13 @@ class Data_akhir extends CI_Controller
 	public function getDataTable($nis)
 	{
 		$data = $this->DataAkhirModel->getPelajaranNilai($nis);
+		echo json_encode($data);
+	}
 
+
+	public function getJurusan($nis)
+	{
+		$data = $this->DataAkhirModel->getJurusan($nis);
 		echo json_encode($data);
 	}
 }

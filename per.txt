@@ -1,0 +1,33 @@
+create view v_pelajaran as SELECT
+    b.nis,
+    b.nama,
+    SUBSTRING_INDEX(SUBSTRING_INDEX(p.pelajaran, ',', numbers.n), ',', -1) AS pelajaran,
+    p.id_pelajaran
+FROM
+    tbl_biodata b
+LEFT JOIN tbl_pilihan_mapel pm ON pm.nis = b.nis
+LEFT JOIN tbl_mst_pelajaran p ON FIND_IN_SET(p.id_pelajaran, pm.id_pelajaran)
+LEFT JOIN tbl_nilai n ON n.nis = b.nis AND n.id_pelajaran = pm.id_pelajaran
+LEFT JOIN tbl_nilai_keaktifan ka ON ka.nis = b.nis
+LEFT JOIN tbl_nilai_keterampilan t ON t.nis = b.nis
+JOIN (
+    SELECT 1 AS n UNION ALL
+    SELECT 2 AS n UNION ALL
+    SELECT 3 AS n UNION ALL
+    SELECT 4 AS n UNION ALL
+    SELECT 5 AS n
+) numbers ON CHAR_LENGTH(p.pelajaran) - CHAR_LENGTH(REPLACE(p.pelajaran, ',', '')) >= numbers.n - 1
+WHERE
+   -- b.nis = '6510'
+     b.id_jurusan NOT IN (1)
+   -- AND b.status = '2'
+ORDER BY
+    b.nis, p.id_pelajaran, numbers.n;
+
+
+
+
+    select b.nis AS nis,group_concat(j.id_jurusan separator ',') AS id_jurusan from (project_muti.tbl_biodata b left join project_muti.tbl_mst_jurusan j on(find_in_set(j.id_jurusan,b.id_jurusan))) group by b.nis,j.id_jurusan order by b.nis
+
+
+
