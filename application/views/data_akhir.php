@@ -177,20 +177,20 @@
 					url: "<?= base_url('data_akhir/getDataTable/') ?>" + nis,
 					type: "GET",
 					dataType: "JSON",
-					success: function(data) {
-						console.log(data);
-						var pelajaranArray = data.pelajaran.split(',');
-						var nilaiArray = data.nilai.split(',');
-						// var rata_rata = data.rata_rata.split(',');
+					success: function(data_akhir) {
+						var data = data_akhir; // Data Anda sudah dalam bentuk array
 
+
+						$('#nilai_pelajaran tbody').empty();
 						var row = '';
-						for (var i = 0; i < pelajaranArray.length; i++) {
-							row += '<tr><td>' + (i + 1) + '</td><td>' + pelajaranArray[i] + '</td><td>' + nilaiArray[i] + '</td></tr>';
+
+						for (var i = 0; i < data.length; i++) {
+							row += '<tr><td>' + (i + 1) + '</td><td>' + data[i].pelajaran + '</td><td>' + data[i].nilai + '</td><td>' + data[i].nrata + '</td></tr>';
 						}
 
 						$('#nilai_pelajaran tbody').append(row);
-
 					}
+
 				});
 			}
 		});

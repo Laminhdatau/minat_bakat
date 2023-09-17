@@ -102,15 +102,7 @@
 					<label for="email">Email</label>
 					<input type="text" class="form-control" id="email" name="email" disabled>
 				</div>
-				<div class="form-group">
-					<label for="jurusan1">Jurusan 1</label>
-					<input type="text" class="form-control" id="jurusan1" name="jurusan[1]" disabled>
-				</div>
-				<div class="form-group">
-					<label for="jurusan2">Jurusan 2</label>
-					<input type="text" class="form-control" id="jurusan2" name="jurusan[2]" disabled>
-				</div>
-
+				
 				<table id="pilihan_pelajaran" class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -161,25 +153,17 @@
 			type: "GET",
 			dataType: "JSON",
 			success: function(data) {
-				var jurusanArray = data.data['jurusan'].split(',').map(function(item) {
-					return item.trim();
-				});
 
-				$('#nis').val(data.data['nis']);
-				$('#nama').val(data.data['nama']);
-				$('#alamat').val(data.data['alamat']);
-				$('#email').val(data.data['email']);
-				$('#jurusan1').val(jurusanArray[0]);
-				$('#jurusan2').val(jurusanArray[1]);
-
-
-
+				$('#nis').val(data.data.nis);
+				$('#nama').val(data.data.nama);
+				$('#alamat').val(data.data.alamat);
+				$('#email').val(data.data.email);
 				$.ajax({
 					url: "<?= base_url('data_awal/getDataTable/') ?>" + nis,
 					type: "GET",
 					dataType: "JSON",
-					success: function(data) {
-						$.each(data, function(i, item) {
+					success: function(response) {
+						$.each(response, function(i, item) {
 							console.log(item);
 							var row = '<tr><td>' + (i + 1) + '</td><td>' + item.pelajaran + '</td></tr>';
 							$('#pilihan_pelajaran tbody').append(row);

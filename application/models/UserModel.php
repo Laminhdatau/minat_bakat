@@ -66,7 +66,7 @@ class UserModel extends CI_Model
 
 	public function getUserOk()
 	{
-		return $this->db->select('sa.id_user,a.username, a.nis, b.nama, b.email,c.jurusan')
+		return $this->db->select('a.id_user,a.username, a.nis, b.nama, b.email,c.jurusan')
 			->from('tbl_user a')
 			->join('tbl_biodata b', 'a.nis = b.nis', 'left')
 			->join('tbl_mst_jurusan c', 'b.id_jurusan = c.id_jurusan', 'left')
@@ -80,6 +80,8 @@ class UserModel extends CI_Model
 		return $this->db->query("SELECT 
 		p.nis,
 		p.nama,
+		b.alamat,
+        b.email,
 		GROUP_CONCAT(p.id_pelajaran SEPARATOR ',') AS id_pelajaran,
 		GROUP_CONCAT(p.pelajaran SEPARATOR ',') AS pelajaran,
 		GROUP_CONCAT(n.nilai SEPARATOR ',') AS nilai,
@@ -94,6 +96,7 @@ class UserModel extends CI_Model
 		v_nilai_aktif na ON na.nis = n.nis AND na.id_pelajaran = p.id_pelajaran
 	JOIN 
 		v_nilai_tampil nt ON na.nis = nt.nis AND nt.id_pelajaran = p.id_pelajaran
+		join tbl_biodata b on b.nis=p.nis
 		where p.nis='" . $nis . "'
 	GROUP BY 
 		p.nis, p.nama;")->row();
